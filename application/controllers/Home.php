@@ -18,10 +18,23 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	/*public function index()
 	{
 		$data['show'] = $this->model->get_show();
 		$this->load->view('home',$data);
+	}*/
+	public function index()
+	{
+		$data['show'] = $this->model->get_show();
+		$this->load->view('header');
+		$this->load->view('main',$data);
+	}
+	public function detail($id)
+	{
+		$where = array('id' => $id);
+		$data['data'] = $this->model->get_id($where,'news');
+		$this->load->view('headersimple');
+		$this->load->view('single',$data);
 	}
 	public function edit_m($id)
 	{
