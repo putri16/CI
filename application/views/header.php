@@ -243,7 +243,7 @@ $(function() {
 			<nav class="cl-effect-4">
 				<ul class="top-nav">
 					<li><a href="<?php echo base_url();?>">Home</a></li>
-					<li><a href="<?php echo base_url();?>">Login</a></li>
+					<li><a href="<?php echo base_url();?>home/login">Login</a></li>
 				</ul>
 			</nav>
 		</div>

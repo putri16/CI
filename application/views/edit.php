@@ -20,7 +20,7 @@
 <br><br>
     <div class="form-group">
             <label class="col-md-3 control-label" for="name">Category</label>
-            <input type=text value="<?php echo $data->category;?>" name=contoh disabled /><br><br>
+            <input type=text value="<?php echo $data->category;?>" name="contoh" disabled /><br><br>
             <div class="col-md-9">
               <select class="form-control" name="id_ca"><?php
                 echo "<option value='' selected> Edit Kategory </option>";

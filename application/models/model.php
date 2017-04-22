@@ -18,6 +18,9 @@ class Model extends  CI_Model{
 						->get();
 		return $query->row();
 	}
+	public function check_user($table,$where){
+		return $this->db->get_where($table,$where);
+	}
 	function update_m($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);

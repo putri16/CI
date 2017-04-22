@@ -36,6 +36,45 @@ class Home extends CI_Controller {
 		$this->load->view('headersimple');
 		$this->load->view('single',$data);
 	}
+	public function login()
+	{
+		$this->load->view('v_login');
+	}
+	function check_login() {
+			$email = $this->input->post('email');
+			$password = $this->input->post('password');
+
+			$where = array(
+                'email' => $email,
+                'password' => $password
+                );
+
+			$cek = $this->model->check_user("admin",$where)->result();
+			foreach ($cek as $a) {
+				$id = $a->id;
+			};
+			$get = $this->model->check_user("admin",$where)->num_rows();
+			if($get > 0){
+				$data_session = array(
+                    'email' => $email,
+                    'login' => TRUE,
+                    'id' => $id,
+                    );
+                $this->session->set_userdata($data_session);
+                	echo "sukses";
+			}else{
+				
+				echo "gagal";
+				
+			}
+
+	}
+	function logout(){
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('login');
+		
+		redirect(base_url('Home'));
+	}
 	public function edit_m($id)
 	{
 		$where = array('id' => $id);
