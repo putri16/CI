@@ -61,13 +61,25 @@ class Home extends CI_Controller {
                     'id' => $id,
                     );
                 $this->session->set_userdata($data_session);
-                	echo "sukses";
+                	redirect(base_url('Home/admin'));
 			}else{
 				
-				echo "gagal";
+				redirect(base_url('Home'));
 				
 			}
 
+	}
+	public function admin()
+	{
+		$data['show'] = $this->model->get_show();
+		$this->load->view('header1');
+		$this->load->view('index',$data);
+	}
+	function cari (){
+		$cari = $this->input->get('cari');
+		$data['show'] = $this->model->cari($cari);
+		$this->load->view('header1');
+		$this->load->view('index2',$data);	
 	}
 	function logout(){
 		$this->session->unset_userdata('email');

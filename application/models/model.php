@@ -21,6 +21,11 @@ class Model extends  CI_Model{
 	public function check_user($table,$where){
 		return $this->db->get_where($table,$where);
 	}
+	public function cari($cari){
+
+	$cari = $this->db->query("select * from news inner join category on news.id_ca = category.id_ca where title like '%$cari%'");
+	return $cari->result();
+	}
 	function update_m($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);
