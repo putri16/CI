@@ -38,6 +38,10 @@ class Model extends  CI_Model{
 	{
 		return $this->db->insert('news',$data);
 	}
+	public function add_k($data)
+	{
+		return $this->db->insert('category',$data);
+	}
 	public function daftar_kategori(){
 		$q="select * FROM category";
 		return $this->db->query($q);

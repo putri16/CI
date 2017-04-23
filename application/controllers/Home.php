@@ -82,17 +82,23 @@ class Home extends CI_Controller {
 		}
 	}
 	function cari (){
+		if($this->session->userdata('login') != TRUE){
+		redirect(base_url('home'));
+		}else{
 		$cari = $this->input->get('cari');
 		$data['show'] = $this->model->cari($cari);
 		$this->load->view('header1');
-		$this->load->view('index2',$data);	
+		$this->load->view('index2',$data);}	
 	}
 	public function view($id)
 	{
+		if($this->session->userdata('login') != TRUE){
+		redirect(base_url('home'));
+		}else{
 		$where = array('id' => $id);
 		$data['data'] = $this->model->get_id($where,'news');
 		$this->load->view('header1');
-		$this->load->view('lihat',$data);
+		$this->load->view('lihat',$data);}
 	}
 	function logout(){
 		$this->session->unset_userdata('email');
@@ -102,11 +108,14 @@ class Home extends CI_Controller {
 	}
 	public function edit_m($id)
 	{
+		if($this->session->userdata('login') != TRUE){
+		redirect(base_url('home'));
+		}else{
 		$where = array('id' => $id);
 		$data['kategori'] = $this->model->daftar_kategori()->result();
 		$data['data'] = $this->model->get_id($where,'news');
 		$this->load->view('header1');
-		$this->load->view('edit',$data);
+		$this->load->view('edit',$data);}
 	}
 	public function update()
 	{
@@ -159,61 +168,73 @@ class Home extends CI_Controller {
 	}
 	public function tambah()
 	{
+		if($this->session->userdata('login') != TRUE){
+		redirect(base_url('home'));
+		}else{
 		$data['kategori'] = $this->model->daftar_kategori()->result();
-		$this->load->view('tambah',$data);
+		$this->load->view('header1');
+		$this->load->view('tambah',$data);}
 	}
 
 	function add(){
-			$title = $this->input->post('title');
-			$content = $this->input->post('content');
-			$id_ca = $this->input->post('id_ca');
-			$image = $this->input->post('image');
-			
 			$this->form_validation->set_rules('title', 'title', 'required');
 			$this->form_validation->set_rules('content', 'content', 'required');
 			$this->form_validation->set_rules('id_ca', 'id_ca', 'required');
-
-			$data= array(
-			'title' => $title,
-			'content' => $content,
-			'id_ca' => $id_ca);
 			
 			if ($this->form_validation->run() === TRUE){
-					$id = $this->model->add_m($data);
-					$config = array(
-			'upload_path' => "./uploads/",
-			'allowed_types' => "gif|jpg|png|jpeg|pdf|doc|docx",
-			'overwrite' => TRUE,
-			'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-			);
-			$this->load->library('upload', $config);
-
-			$files = $_FILES;
-			
-				$_FILES['userfile']['name'] = $files['userfile']['name'];
-				$_FILES['userfile']['type'] = $files['userfile']['type'];
-				$_FILES['userfile']['tmp_name'] = $files['userfile']['tmp_name'];
-				$_FILES['userfile']['error'] = $files['userfile']['error'];
-				$_FILES['userfile']['size'] = $files['userfile']['size'];
-				
-				$this->upload->initialize($config);
-				if($this->upload->do_upload())
-				{
-				$uploaded_data = array('upload_data' => $this->upload->data());
-				$file_name = $uploaded_data['upload_data']['file_name'];
-				echo $file_name;	
-					$this->model->simpan($file_name, $id);
+				$config['upload_path']          = './uploads/';
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['max_size']             = 100;
+				$config['max_width']            = 1024;
+				$config['max_height']           = 768;
+		 
+				$this->load->library('upload', $config);
+		 
+				if ( ! $this->upload->do_upload('berkas')){
+					$error = array('error' => $this->upload->display_errors());
+					$this->load->view('v_upload', $error);
+				}else{
+					$uploaded_data = array('upload_data' => $this->upload->data());
+					$file_name = $uploaded_data['upload_data']['file_name'];
+					$title = $this->input->post('title');
+					$content = $this->input->post('content');
+					$id_ca = $this->input->post('id_ca');
+					$data = array(
+						'title' => $title,
+						'content' => $content,
+						'id_ca' => $id_ca,
+						'image' => $file_name
+					);
+					
+					$this->model->add_m($data);
+					
+					?><script type="text/javascript">alert("data berhasil ditambah ."); window.location="http://localhost/CI/home/admin"</script> <?php
 				}
-				else
-				{
-				$error = array('error' => $this->upload->display_errors());
-				$this->load->view('file_view', $error);
-				}
-			
-					redirect(base_url('home'));
 			}else{
-				redirect(base_url('home/tambah'));
-			}
-	}
+			?><script type="text/javascript">alert("data belum diisi semua <?php echo form_error();?>."); window.location="http://localhost/CI/home/tambah"</script> <?php
+			}	
+}
+function add_ca(){
+			
+			$this->form_validation->set_rules('category', 'category', 'required');
+			
+			if ($this->form_validation->run() === TRUE){
+				
+					$category = $this->input->post('category');
+					
+					$data = array(
+						'category' => $category
+					);
+					
+					$this->model->add_k($data);
+					
+					?><script type="text/javascript">alert("Kategori berhasil ditambah ."); window.location="http://localhost/CI/home/tambah"</script> <?php
+				
+			}else{
+				
+					?><script type="text/javascript">alert("Category belum diisi ."); window.location="http://localhost/CI/home/tambah"</script> <?php
+			}	
 	
 }
+}
+
