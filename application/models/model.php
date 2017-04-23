@@ -18,6 +18,14 @@ class Model extends  CI_Model{
 						->get();
 		return $query->row();
 	}
+	public function profile($where,$table){
+		
+		$query = $this->db->select('*')
+						->from($table)
+						->where($where)
+						->get();
+		return $query->row();
+	}
 	public function check_user($table,$where){
 		return $this->db->get_where($table,$where);
 	}

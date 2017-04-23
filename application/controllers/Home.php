@@ -51,14 +51,14 @@ class Home extends CI_Controller {
 
 			$cek = $this->model->check_user("admin",$where)->result();
 			foreach ($cek as $a) {
-				$id = $a->id;
+				$id_admin = $a->id_admin;
 			};
 			$get = $this->model->check_user("admin",$where)->num_rows();
 			if($get > 0){
 				$data_session = array(
                     'email' => $email,
                     'login' => TRUE,
-                    'id' => $id,
+                    'id_admin' => $id_admin,
                     );
                 $this->session->set_userdata($data_session);
                 	redirect(base_url('Home/admin'));
@@ -236,5 +236,38 @@ function add_ca(){
 			}	
 	
 }
+public function profil()
+	{
+		$id = $this->session->userdata('login');
+		$where = array('id_admin' => $id);
+		$data['data'] = $this->model->profile($where,'admin');
+		$this->load->view('header1');
+		$this->load->view('profil',$data);
+	}
+	public function edit_p()
+	{
+		$this->form_validation->set_rules('password','password','required');
+		$this->form_validation->set_rules('email','email','required|valid_email');
+			if ($this->form_validation->run() === TRUE){
+				
+					$id_admin = $this->input->post('id_admin');
+					$email = $this->input->post('email');
+					$password = $this->input->post('password');
+					$data = array(
+						'email' => $email,
+						'password' => $password
+					);
+					$where = array(
+						'id_admin' => $id_admin
+					);
+					$this->model->update_m($where,$data,'admin');
+					?><script type="text/javascript">alert("data berhasil diperbarui ."); window.location="http://localhost/CI/home/profil/<?php echo $id_admin?>"</script> <?php
+				
+			}
+			else{
+				$id = $this->session->userdata('login');
+			?><script type="text/javascript">alert("data belum diisi semua <?php echo form_error();?>."); window.location="http://localhost/CI/home/profil/<?php echo $id?>"</script> <?php
+			}	
+	}
 }
 

@@ -61,7 +61,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="<?php echo base_url();?>home/profil"><i class="fa fa-user fa-fw"></i> Admin Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="<?php echo base_url();?>home/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -86,7 +86,7 @@
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Tambah Admin</a>
                         </li>
 						<li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Admin Profile</a>
+                            <a href="<?php echo base_url();?>home/profil"><i class="fa fa-edit fa-fw"></i> Admin Profile</a>
                         </li>
 						<li>
                             <a href="<?php echo base_url();?>home/logout"><i class="fa fa-wrench fa-fw"></i> Logout</a>
