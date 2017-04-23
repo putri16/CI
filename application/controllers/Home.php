@@ -87,6 +87,13 @@ class Home extends CI_Controller {
 		$this->load->view('header1');
 		$this->load->view('index2',$data);	
 	}
+	public function view($id)
+	{
+		$where = array('id' => $id);
+		$data['data'] = $this->model->get_id($where,'news');
+		$this->load->view('header1');
+		$this->load->view('lihat',$data);
+	}
 	function logout(){
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('login');
