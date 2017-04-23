@@ -152,9 +152,10 @@ class Home extends CI_Controller {
 	}
 	function hapus($id)
 	{
+		$id = $this->input->post('hapus');
 		$where = array('id' => $id);
-		$data['data'] = $this->model->hapus_m($where,'news');
-		redirect(base_url('home'));
+		$this->model->hap($where,'news');
+		redirect(base_url('home/admin'));
 	}
 	public function tambah()
 	{

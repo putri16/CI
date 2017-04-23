@@ -52,6 +52,7 @@
                                         <td>
 											<a href='http://localhost/CI/home/view/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Lihat'></a>
 											<a href='http://localhost/CI/home/edit_m/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Edit'></a>
+											<a href='#modalConfirm' data-toggle='modal' role='button' onclick='changevalue(".$rowshow->id.")'><div class='btn btn-primary btn-md' type='submit'>Hapus</div></a>
 											</td>";
 											
 										echo "
@@ -77,7 +78,33 @@
 
     </div>
     <!-- /#wrapper -->
-	
+		<div id="modalConfirm"  class="modal fade" role="dialog" aria-hidden="true">
+			<?php echo form_open("http://localhost/coba2/home/hapus", ["id" => "formConfirm" ,"class" => "form-horizontal", "role" => "form"]); ?>
+			<input type="hidden" name="hapus" id="hapus">
+			<div class="modal-dialog" style="width:600px;height:300px" >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+						<h4 class="modal-title">Konfirmasi Hapus</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="col-md-12">
+								Apakah Anda yakin menghapus jabatan ini?
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="form-group">
+							<label class="col-md-6 control-label"></label>
+							<button type="submit" class="btn blue">HAPUS</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">BATAL</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php echo form_close(); ?>
+	</div>	
 
 
     <!-- jQuery -->
@@ -104,7 +131,10 @@
             responsive: true
         });
     });
-	
+	function changevalue(id){
+	var form = document.getElementById("hapus");
+	form.value = id;
+	}
     </script>
 
 </body>
