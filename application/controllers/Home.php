@@ -237,12 +237,15 @@ function add_ca(){
 	
 }
 public function profil()
-	{
+	{if($this->session->userdata('login') != TRUE){
+		redirect(base_url('home'));
+		}
+		else{
 		$id = $this->session->userdata('login');
 		$where = array('id_admin' => $id);
 		$data['data'] = $this->model->profile($where,'admin');
 		$this->load->view('header1');
-		$this->load->view('profil',$data);
+		$this->load->view('profil',$data);}
 	}
 	public function edit_p()
 	{
@@ -268,6 +271,24 @@ public function profil()
 				$id = $this->session->userdata('login');
 			?><script type="text/javascript">alert("data belum diisi semua <?php echo form_error();?>."); window.location="http://localhost/CI/home/profil/<?php echo $id?>"</script> <?php
 			}	
+	}
+	public function category()
+	{
+		if($this->session->userdata('login') != TRUE){
+		redirect(base_url('home'));
+		}
+		else{
+		$data['show'] = $this->model->get_ca();
+		$this->load->view('header1');
+		$this->load->view('category',$data);
+		}
+	}
+	function hapus_ca($id)
+	{
+		$id = $this->input->post('hapus');
+		$where = array('id_ca' => $id);
+		$this->model->hap($where,'category');
+		redirect(base_url('home/category'));
 	}
 }
 

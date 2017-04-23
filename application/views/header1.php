@@ -83,9 +83,6 @@
                             <a href="<?php echo base_url();?>home/tambah"><i class="fa fa-edit fa-fw"></i> Tambah Berita</a>
                         </li>
 						<li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Tambah Admin</a>
-                        </li>
-						<li>
                             <a href="<?php echo base_url();?>home/profil"><i class="fa fa-edit fa-fw"></i> Admin Profile</a>
                         </li>
 						<li>

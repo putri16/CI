@@ -8,6 +8,12 @@ class Model extends  CI_Model{
 						->get();
 		return $query->result();
 	}
+	public function get_ca(){
+		$query = $this->db->select('*')
+						->from('category')
+						->get();
+		return $query->result();
+	}
 	
 	public function get_id($where,$table){
 		

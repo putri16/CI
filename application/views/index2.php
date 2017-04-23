@@ -90,7 +90,7 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<div class="col-md-12">
-								Apakah Anda yakin menghapus jabatan ini?
+								Apakah anda yakin menghapus berita ini?
 							</div>
 						</div>
 					</div>

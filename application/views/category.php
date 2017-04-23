@@ -3,7 +3,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">List Berita</h1>
+                    <h1 class="page-header">List Kategori</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -12,15 +12,9 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-						<form method="get" action="<?php echo base_url('home/cari'); ?>">
                             <div class="input-group custom-search-form">
-							<input type="text" class="form-control" placeholder="Search Title..." name ="cari"><br>
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-				  </form>
+							<center><h3><h3></center>
+				
                             </div>
                         </div><br>
 						
@@ -31,7 +25,6 @@
                                 <thead>
                                     <tr>
                                         <th>Nomor</th>
-                                        <th>Title</th>
                                         <th>Category</th>
                                         <th colspan="3">Aksi</th>
                                     </tr>
@@ -47,12 +40,9 @@
 										$no++;
 											echo "
 										<td>$no</td>
-										<td>".$rowshow->title."</td>
 										<td>".$rowshow->category."</td>
                                         <td>
-											<a href='http://localhost/CI/home/view/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Lihat'></a>
-											<a href='http://localhost/CI/home/edit_m/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Edit'></a>
-											<a href='#modalConfirm' data-toggle='modal' role='button' onclick='changevalue(".$rowshow->id.")'><div class='btn btn-primary btn-md' type='submit'>Hapus</div></a>
+											<a href='#modalConfirm' data-toggle='modal' role='button' onclick='changevalue(".$rowshow->id_ca.")'><div class='btn btn-primary btn-md' type='submit'>Hapus</div></a>
 											</td>";
 										echo "
                                         
@@ -78,7 +68,7 @@
     </div>
     <!-- /#wrapper -->
 				<div id="modalConfirm"  class="modal fade" role="dialog" aria-hidden="true">
-			<?php echo form_open("http://localhost/coba2/home/hapus", ["id" => "formConfirm" ,"class" => "form-horizontal", "role" => "form"]); ?>
+			<?php echo form_open("http://localhost/CI/home/hapus_ca", ["id" => "formConfirm" ,"class" => "form-horizontal", "role" => "form"]); ?>
 			<input type="hidden" name="hapus" id="hapus">
 			<div class="modal-dialog" style="width:600px;height:300px" >
 				<div class="modal-content">
@@ -89,7 +79,7 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<div class="col-md-12">
-								Apakah anda yakin menghapus berita ini?
+								Apakah Anda yakin menghapus kategori berita ini?
 							</div>
 						</div>
 					</div>

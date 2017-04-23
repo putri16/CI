@@ -57,6 +57,7 @@
                                         </div>
 										<br>
 										<button type="submit" class="btn btn-primary">Tambah Kategori</button>
+										<a href="http://localhost/CI/home/category"><button type="button" class="btn btn-primary">Kategori</button></a>
                                     <?php echo form_close(); ?>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
