@@ -105,38 +105,50 @@ class Home extends CI_Controller {
 		$where = array('id' => $id);
 		$data['kategori'] = $this->model->daftar_kategori()->result();
 		$data['data'] = $this->model->get_id($where,'news');
+		$this->load->view('header1');
 		$this->load->view('edit',$data);
 	}
 	public function update()
 	{
-		
-			$this->form_validation->set_rules('title','title','required');
+		$this->form_validation->set_rules('title','title','required');
 			$this->form_validation->set_rules('content','content','required');
-			$this->form_validation->set_rules('id_ca','id_ca','required');
-			$this->form_validation->set_rules('image','image','required');
 			if ($this->form_validation->run() === TRUE){
-				$id = $this->input->post('id');
-				$title = $this->input->post('title');
-				$content = $this->input->post('content');
-				$id_ca = $this->input->post('id_ca');
-				$image = $this->input->post('image');
-				$data = array(
-					'title' => $title,
-					'content' => $content,
-					'id_ca' => $id_ca,
-					'image' => $image
-				);
-
-				$where = array(
-					'id' => $id
-				);
-
-				$this->model->update_m($where,$data,'news');
-				redirect(base_url('home'));
+				$config['upload_path']          = './uploads/';
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['max_size']             = 100;
+				$config['max_width']            = 1024;
+				$config['max_height']           = 768;
+		 
+				$this->load->library('upload', $config);
+		 
+				if ( ! $this->upload->do_upload('berkas')){
+					$error = array('error' => $this->upload->display_errors());
+				
+					$this->load->view('v_upload', $error);
+				}else{
+					$uploaded_data = array('upload_data' => $this->upload->data());
+					$file_name = $uploaded_data['upload_data']['file_name'];
+					$id = $this->input->post('id');
+					$title = $this->input->post('title');
+					$content = $this->input->post('content');
+					$id_ca = $this->input->post('id_ca');
+					$data = array(
+						'title' => $title,
+						'content' => $content,
+						'id_ca' => $id_ca,
+						'image' => $file_name
+					);
+					$where = array(
+						'id' => $id
+					);
+					$this->model->update_m($where,$data,'news');
+					?><script type="text/javascript">alert("data berhasil diperbarui ."); window.location="http://localhost/CI/home/admin"</script> <?php
 				}
-				else{
-				echo "gagal";
 			}
+			else{
+				$id = $this->input->post('id');
+			?><script type="text/javascript">alert("data belum diisi semua <?php echo form_error();?>."); window.location="http://localhost/CI/home/edit_m/<?php echo $id?>"</script> <?php
+			}	
 	}
 	function hapus($id)
 	{
