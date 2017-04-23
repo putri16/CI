@@ -71,16 +71,16 @@
 					<div class="l_g">
 					<?php
 					foreach($show as $rowshow){
-						$data = $rowshow['title'];
+						/*$data = $rowshow['title'];
 						$image = $rowshow['image'];
-						$id = $rowshow['id'];
+						$id = $rowshow['id'];*/
 					?>
 						<div class="col-md-3 fea-grid-1">
 							<div class="fea-grid-top">
-								<a href="<?php echo "http://localhost/CI/Home/detail/$id"?>"><img src="<?php echo base_url();?>uploads/<?php echo $image; ?>" alt="" class="img-responsive"></a>
+								<a href="<?php echo "http://localhost/CI/Home/detail/$rowshow->id"?>"><img src="<?php echo "http://localhost/CI/uploads/$rowshow->image"; ?>" alt="" class="img-responsive"></a>
 							</div>
 							<div class="fea-grid-bottom">
-								<h3><a href="<?php echo "http://localhost/CI/Home/detail/$id"?>"><?php echo $data;?></a></h3>
+								<h3><a href="<?php echo "http://localhost/CI/Home/detail/$rowshow->id"?>"><?php echo "".$rowshow->title."";?></a></h3>
 								<div class="clearfix"> </div>
 							</div>
 						  <div class="clearfix"> </div>

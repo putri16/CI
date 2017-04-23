@@ -6,7 +6,7 @@ class Model extends  CI_Model{
 						->from('news')
 						->join('category', 'news.id_ca = category.id_ca')
 						->get();
-		return $query->result_array();
+		return $query->result();
 	}
 	
 	public function get_id($where,$table){

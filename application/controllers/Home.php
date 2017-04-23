@@ -64,16 +64,22 @@ class Home extends CI_Controller {
                 	redirect(base_url('Home/admin'));
 			}else{
 				
-				redirect(base_url('Home'));
+				
+		?><script type="text/javascript">alert("Email dan password yang anda masukkan salah ."); window.location="http://localhost/CI/home/login"</script> <?php
 				
 			}
 
 	}
 	public function admin()
 	{
+		if($this->session->userdata('login') != TRUE){
+		redirect(base_url('home'));
+		}
+		else{
 		$data['show'] = $this->model->get_show();
 		$this->load->view('header1');
 		$this->load->view('index',$data);
+		}
 	}
 	function cari (){
 		$cari = $this->input->get('cari');
@@ -85,7 +91,7 @@ class Home extends CI_Controller {
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('login');
 		
-		redirect(base_url('Home'));
+		redirect(base_url('home'));
 	}
 	public function edit_m($id)
 	{

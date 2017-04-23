@@ -36,27 +36,30 @@
                                         <th colspan="3">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="odd gradeX">
-									<?php
+								<?php
 									$no=0;
 										foreach($show as $rowshow){
+											echo "
+                                <tbody>
+                                    <tr class='odd gradeX'>";
 									
-										$no++;?>
-                                        <?php
+									
+										$no++;
 											echo "
 										<td>$no</td>
-										<td>$rowshow->title</td>
-										<td>$rowshow->category</td>
+										<td>".$rowshow->title."</td>
+										<td>".$rowshow->category."</td>
                                         <td>
 											<a href='http://localhost/CI/home/view/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Lihat'></a>
 											<a href='http://localhost/CI/home/edit_m/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Edit'></a>
-											<a href='http://localhost/CI/home/login'><input type='submit' class='btn btn-primary btn-md' value='Hapus'></a></td>";
-										}?>
+											</td>";
+											
+										echo "
                                         
                                     </tr>
                                     
-                                </tbody>
+                                </tbody>";
+								}?>
                             </table>
                             <!-- /.table-responsive -->
                             
@@ -74,6 +77,8 @@
 
     </div>
     <!-- /#wrapper -->
+	
+
 
     <!-- jQuery -->
     <script src="<?php echo base_url();?>asset/vendor/jquery/jquery.min.js"></script>
@@ -99,6 +104,7 @@
             responsive: true
         });
     });
+	
     </script>
 
 </body>
