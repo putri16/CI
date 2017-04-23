@@ -26,7 +26,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data['show'] = $this->model->get_show();
-		$this->load->view('header');
+		$this->load->view('headersimple');
 		$this->load->view('main',$data);
 	}
 	public function detail($id)
@@ -40,13 +40,13 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('v_login');
 	}
-	function check_login() {
+	public function check_login() {
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
 			$where = array(
                 'email' => $email,
-                'password' => $password
+                'password' => md5($password)
                 );
 
 			$cek = $this->model->check_user("admin",$where)->result();
@@ -81,7 +81,7 @@ class Home extends CI_Controller {
 		$this->load->view('index',$data);
 		}
 	}
-	function cari (){
+	public function cari (){
 		if($this->session->userdata('login') != TRUE){
 		redirect(base_url('home'));
 		}else{
@@ -89,6 +89,13 @@ class Home extends CI_Controller {
 		$data['show'] = $this->model->cari($cari);
 		$this->load->view('header1');
 		$this->load->view('index2',$data);}	
+	}
+	public function cari2 (){
+		
+		$cari = $this->input->get('cari');
+		$data['show'] = $this->model->cari($cari);
+		$this->load->view('headersimple');
+		$this->load->view('main',$data);
 	}
 	public function view($id)
 	{
@@ -100,7 +107,7 @@ class Home extends CI_Controller {
 		$this->load->view('header1');
 		$this->load->view('lihat',$data);}
 	}
-	function logout(){
+	public function logout(){
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('login');
 		
@@ -132,7 +139,6 @@ class Home extends CI_Controller {
 		 
 				if ( ! $this->upload->do_upload('berkas')){
 					$error = array('error' => $this->upload->display_errors());
-				
 					$this->load->view('v_upload', $error);
 				}else{
 					$uploaded_data = array('upload_data' => $this->upload->data());
@@ -159,7 +165,7 @@ class Home extends CI_Controller {
 			?><script type="text/javascript">alert("data belum diisi semua <?php echo form_error();?>."); window.location="http://localhost/CI/home/edit_m/<?php echo $id?>"</script> <?php
 			}	
 	}
-	function hapus($id)
+	public function hapus($id)
 	{
 		$id = $this->input->post('hapus');
 		$where = array('id' => $id);
@@ -176,7 +182,7 @@ class Home extends CI_Controller {
 		$this->load->view('tambah',$data);}
 	}
 
-	function add(){
+	public function add(){
 			$this->form_validation->set_rules('title', 'title', 'required');
 			$this->form_validation->set_rules('content', 'content', 'required');
 			$this->form_validation->set_rules('id_ca', 'id_ca', 'required');
@@ -214,7 +220,7 @@ class Home extends CI_Controller {
 			?><script type="text/javascript">alert("data belum diisi semua <?php echo form_error();?>."); window.location="http://localhost/CI/home/tambah"</script> <?php
 			}	
 }
-function add_ca(){
+		public function add_ca(){
 			
 			$this->form_validation->set_rules('category', 'category', 'required');
 			
@@ -236,12 +242,12 @@ function add_ca(){
 			}	
 	
 }
-public function profil()
+function profil()
 	{if($this->session->userdata('login') != TRUE){
 		redirect(base_url('home'));
 		}
 		else{
-		$id = $this->session->userdata('login');
+		$id = $this->session->userdata('id_admin');
 		$where = array('id_admin' => $id);
 		$data['data'] = $this->model->profile($where,'admin');
 		$this->load->view('header1');
@@ -258,7 +264,7 @@ public function profil()
 					$password = $this->input->post('password');
 					$data = array(
 						'email' => $email,
-						'password' => $password
+						'password' => md5($password)
 					);
 					$where = array(
 						'id_admin' => $id_admin
@@ -283,7 +289,7 @@ public function profil()
 		$this->load->view('category',$data);
 		}
 	}
-	function hapus_ca($id)
+	public function hapus_ca($id)
 	{
 		$id = $this->input->post('hapus');
 		$where = array('id_ca' => $id);

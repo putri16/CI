@@ -30,10 +30,10 @@
                             <table width="100%" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Nomor</th>
+                                        <th>Number</th>
                                         <th>Title</th>
                                         <th>Category</th>
-                                        <th colspan="3">Aksi</th>
+                                        <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
 								<?php
@@ -50,9 +50,9 @@
 										<td>".$rowshow->title."</td>
 										<td>".$rowshow->category."</td>
                                         <td>
-											<a href='http://localhost/CI/home/view/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Lihat'></a>
-											<a href='http://localhost/CI/home/edit_m/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Edit'></a>
-											<a href='#modalConfirm' data-toggle='modal' role='button' onclick='changevalue(".$rowshow->id.")'><div class='btn btn-primary btn-md' type='submit'>Hapus</div></a>
+											<a href='http://localhost/CI/home/view/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='View'></a>
+											<a href='http://localhost/CI/home/edit_m/$rowshow->id'><input type='submit' class='btn btn-primary btn-md' value='Update'></a>
+											<a href='#modalConfirm' data-toggle='modal' role='button' onclick='changevalue(".$rowshow->id.")'><div class='btn btn-primary btn-md' type='submit'>Delete</div></a>
 											</td>";
 										echo "
                                         
@@ -78,7 +78,7 @@
     </div>
     <!-- /#wrapper -->
 				<div id="modalConfirm"  class="modal fade" role="dialog" aria-hidden="true">
-			<?php echo form_open("http://localhost/coba2/home/hapus", ["id" => "formConfirm" ,"class" => "form-horizontal", "role" => "form"]); ?>
+			<?php echo form_open("http://localhost/CI/home/hapus", ["id" => "formConfirm" ,"class" => "form-horizontal", "role" => "form"]); ?>
 			<input type="hidden" name="hapus" id="hapus">
 			<div class="modal-dialog" style="width:600px;height:300px" >
 				<div class="modal-content">

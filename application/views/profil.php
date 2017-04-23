@@ -27,7 +27,7 @@
                                         </div>
 										<div class="form-group">
                                             <label>Password</label>
-                                            <input class="form-control" name="password" type="password" value="<?php echo $data->password;?>">
+                                            <input class="form-control" name="password" type="password" value="<?php  echo $data->password;?>">
                                         </div>
 										
 										<button type="submit" class="btn btn-primary">Edit Profil</button>

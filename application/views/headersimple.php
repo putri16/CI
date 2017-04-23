@@ -5,7 +5,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/-->
 <!DOCTYPE html>
 <html>
 <head>
-<title>Jaunt  A Travel Category Flat Bootstrap Responsive  Website Template | Home :: w3layouts</title>
+<title>Halaman User</title>
 <link href="<?php echo base_url();?>source/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<?php echo base_url();?>source/js/jquery-1.11.0.min.js"></script>
@@ -104,11 +104,11 @@ $(function() {
 		<div class="h-strip-main">
 			<div class="h-strip-logo">
 				<div class="h-strip-left">
-					<h1><a href="index.html">Jaunt</a></h1>
+					<h1><a href="index.html">REPUBLIKA</a></h1>
 				</div>
 				<div class="h-strip-right">
-				  <form>
-					<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"/>
+				  <form method="get" action="<?php echo base_url('home/cari2'); ?>">
+					<input type="text" value="" placeholder="Search" name="cari" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"/>
 					<input type="submit" value="">
 				  </form>
 				</div>
@@ -122,6 +122,7 @@ $(function() {
 				<ul class="top-nav">
 					<li><a href="<?php echo base_url();?>">Home</a></li>
 					<li><a href="<?php echo base_url();?>home/login">Login</a></li>
+					
 				</ul>
 			</nav>
 		</div>

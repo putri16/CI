@@ -60,13 +60,6 @@ class Model extends  CI_Model{
 		$q="select * FROM category";
 		return $this->db->query($q);
 	}
-	function simpan($image, $id) {
-	$data = array(
-'image' => $image);
-$where = array(
-'id' => $id);
-	$this->db->where($where);
-		$this->db->update('news',$data);
-}
+	
 
 }

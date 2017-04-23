@@ -1,47 +1,4 @@
-<!--contant start here-->
-<div class="contant">
-	<div class="container">
-		<div class="contant-main">
-			  <div class="col-md-4 content-grid-1 bg-one">
-			  	<div class="content-grid-text">
-			  		<h3>Trendy Hotels</h3>
-			  		<p> when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic </p>
-			  		 <div class=" ser-grid">	
-		   				<a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-home"> </a>
-		   			  </div>
-			  		<div class="contant-bwn">
-			  			<a href="single.html" class="button push">View</a>
-			  		</div>
-			  	</div> 
-			  </div>
-			  <div class="col-md-4 content-grid-1 bg-two">
-			  	<div class="content-grid-text">
-			  		<h3>Flight Booking</h3>
-			  		<p> when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the  leap into electronic </p>
-			  		<div class=" ser-grid">	
-		   				<a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-plane"> </a>
-		   			  </div>
-			  		<div class="contant-bwn">
-			  			<a href="single.html" class="button push">View</a>
-			  		</div>
-			  	</div>
-			  </div>
-			  <div class="col-md-4 content-grid-3 bg-three">
-			  	<div class="content-grid-text">
-			  		<h3>Customer Support</h3>
-			  		<p> when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the  leap into electronic </p>
-			  		<div class=" ser-grid">	
-		   				<a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-cutlery"> </a>
-		   			  </div>
-			  		<div class="contant-bwn">
-			  			<a href="single.html" class="button push">View</a>
-			  		</div>
-			  	</div>	  	
-			  </div>
-			<div class="clearfix"> </div>
-			</div>
-		</div>
-</div>
+
 <!--contact end here-->
 <script>
 		$(document).ready(function () {
@@ -63,7 +20,7 @@
 <div class="feature-grid">
 	<div class="container">
 		<div class="feature-grid-main">
-			<h5>Featured Packages</h5>
+			
 		      <div class="load_more">	
 					 <ul id="myList">
 					    <!-- These are our grid blocks -->
@@ -77,10 +34,10 @@
 					?>
 						<div class="col-md-3 fea-grid-1">
 							<div class="fea-grid-top">
-								<a href="<?php echo "http://localhost/CI/Home/detail/$rowshow->id"?>"><img src="<?php echo "http://localhost/CI/uploads/$rowshow->image"; ?>" alt="" class="img-responsive"></a>
+								<a href="<?php echo "http://localhost/CI/Home/detail/$rowshow->id"?>"><img src="<?php echo "http://localhost/CI/uploads/$rowshow->image"; ?>" alt="" style="height: 200px; width:500px;" class="img-responsive"></a>
 							</div>
-							<div class="fea-grid-bottom">
-								<h3><a href="<?php echo "http://localhost/CI/Home/detail/$rowshow->id"?>"><?php echo "".$rowshow->title."";?></a></h3>
+							<div class="fea-grid-bottom" style="height:150px;">
+								<h3><a href="<?php echo "http://localhost/CI/Home/detail/$rowshow->id"?>" ><?php echo "".$rowshow->title."";?></a></h3>
 								<div class="clearfix"> </div>
 							</div>
 						  <div class="clearfix"> </div>
@@ -90,7 +47,7 @@
 						?>
 						<!--div class="col-md-3 fea-grid-1">
 							<div class="fea-grid-top">
-								<a href="single.html"><img src="<?php echo base_url();?>source/images/f2.jpg" alt="" class="img-responsive"></a>
+								<a href="single.html"><img src="<?php echo base_url();?>source/images/f2.jpg" alt="" class="img-responsive" ></a>
 							</div>
 							<div class="fea-grid-bottom">
 								<h3><a href="single.html">Island Tour</a></h3>

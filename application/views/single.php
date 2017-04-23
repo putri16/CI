@@ -1,27 +1,17 @@
-<div class="single">
+<!--about start here-->
+<div class="about">
 	<div class="container">
-		<center><h3><?php echo $data->title;?> ( <?php echo $data->category;?> ) </h3><br></center>
-		<div class="single-main">
-			<div class="col-md-8 single-top">
-				<div class="col-md-5 sing-slid-grid">		
-			        <div class="flexslider">
-			        	
-					        <div class="thumb-image"> <img src="<?php echo base_url();?>uploads/<?php echo $data->image; ?>" data-imagezoom="true" class="img-responsive"> </div>
-					   <br><br>
-				 	  <?php echo $data->content;?> 
-			      </div>
-		        </div>	
-	            <div class="col-md-7 information">
-						
-						 
-				       
-				</div>
-			  <div class="clearfix"> </div>
-			 </div>
-			
+		<div class="about-main">
+			<h4><?php echo $data->category;?></h4>
+			<div class="col-md-6 about-left">
+				<img src="<?php echo base_url();?>uploads/<?php echo $data->image; ?>" alt="" class="img-responsive">
+			</div>
+			<div class="col-md-6 about-rigth">
+				 <h3><?php echo $data->title;?></h3>
+				 <p><?php echo $data->content;?> </p>
+			</div>
 		  <div class="clearfix"> </div>
-		  
 		</div>
 	</div>
 </div>
-<!--single page end here-->
+<!--about end here-->
